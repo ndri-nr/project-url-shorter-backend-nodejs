@@ -64,7 +64,7 @@ const postUrl = (req, reply) => {
             const fileFullPath = FILES_PATH + '/' + id.trim()
     
             if (!fs.existsSync(fileFullPath)) {
-                fs.writeFileSync(fileFullPath, url.trim());
+                fs.writeFileSync(fileFullPath, encodeURIComponent(url.trim()));
                 reply.send({ 
                     status: 200,
                     message: 'url linked',
