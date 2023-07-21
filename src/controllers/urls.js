@@ -59,29 +59,29 @@ const postUrl = (req, reply) => {
             status: 400,
             message: errors.join(', ')
         })
-    }
-
-    try {
-        const fileFullPath = FILES_PATH + '/' + id.trim()
-
-        if (!fs.existsSync(fileFullPath)) {
-            fs.writeFileSync(fileFullPath, url.trim());
-            reply.send({ 
-                status: 200,
-                message: 'url linked',
-                data: id
-            })
-        } else {
-            reply.code(409).send({ 
-                status: 409,
-                message: 'id exist, please try again with another id'
+    } else {
+        try {
+            const fileFullPath = FILES_PATH + '/' + id.trim()
+    
+            if (!fs.existsSync(fileFullPath)) {
+                fs.writeFileSync(fileFullPath, url.trim());
+                reply.send({ 
+                    status: 200,
+                    message: 'url linked',
+                    data: id
+                })
+            } else {
+                reply.code(409).send({ 
+                    status: 409,
+                    message: 'id exist, please try again with another id'
+                })
+            }
+        } catch (err) {
+            reply.code(500).send({ 
+                status: 500,
+                message: 'something went wrong, please try again later'
             })
         }
-    } catch (err) {
-        reply.code(500).send({ 
-            status: 500,
-            message: 'something went wrong, please try again later'
-        })
     }
 }
 
