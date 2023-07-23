@@ -36,8 +36,8 @@ const postUrlOpts = {
 
 function urlRoutes (fastify, options, done) {
 
-    fastify.get('/api/url/:id', getUrlByIdOpts)
-    fastify.post('/api/url', postUrlOpts)
+    fastify.get('/v1/url/:id', getUrlByIdOpts)
+    fastify.post('/v1/url', postUrlOpts)
 
     done()
 
