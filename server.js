@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const fastify = require('fastify')({ logger: true })
 const cors = require('fastify-cors');
 const fastifySwagger = require('fastify-swagger')
+const baseRoutes = require('./src/routes/base')
 const urlRoutes = require('./src/routes/urls')
 
 dotenv.config();
@@ -26,6 +27,7 @@ if (ENV === "dev") {
         }
     })
 }
+fastify.register(baseRoutes)
 fastify.register(urlRoutes)
 
 const start = async () => {
