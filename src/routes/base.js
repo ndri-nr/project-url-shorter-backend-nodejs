@@ -1,6 +1,6 @@
 const { getBase } = require('../controllers/base')
 
-const getBaseByIdOpts = {
+const getBaseOpts = {
     schema: {
         response: {
             200: {type: 'string'}
@@ -11,7 +11,7 @@ const getBaseByIdOpts = {
 
 function baseRoutes (fastify, options, done) {
 
-    fastify.get('/', getBaseByIdOpts)
+    fastify.get('/', getBaseOpts)
 
     done()
 
